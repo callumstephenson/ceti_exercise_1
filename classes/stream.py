@@ -1,11 +1,11 @@
 # This module provides the stream class for the calculations
 
 class stream:
-    '''A class for the stream object, containing mass flowrate, molar flowrate, and molar fractions of each Chemical'''
+    'A class for the stream object, containing mass flowrate, molar flowrate, and molar fractions of each chemical'
 
     def __init__(self, stream_number, mass_flow, mol_flow, co_frac, aco_frac, dco_frac, aa_frac, water_frac, gum_frac):
-        
         'stream class initialisation with each of the corresponding input arguments being set to self.'
+
         self.stream_number = stream_number
         self.mass_flow = mass_flow
         self.mol_flow = mol_flow
@@ -29,13 +29,14 @@ class stream:
     def __repr__(self):
 
         'Self print statement for the stream object'
-        d = "Stream Number:     {}\n".format(self.stream_number)
-        d += "Mass Flowrate (kg/hr):     {}\n".format(self.mass_flow)
-        d += "   Molar Flowrate (kmol/hr):      {}\n".format(self.mol_flow)
-        d += "   CO Mole Fraction    {}\n".format(self.co_frac)
-        d += "   ACO Mole Fraction:    {}\n".format(self.aco_frac)
-        d += "   DCO Mole Fraction:          {}\n".format(self.dco_frac)
-        d += "   AA Mole Fraction:         {}\n".format(self.aa_frac)
-        d += "   Water Mole Fraction: {}".format(self.water_frac)
-        d += "   Gum Mole Fraction:  {}".format(self.gum_frac)
-        return d
+        if self.valid:
+            d = "Stream Number:     {}\n".format(self.stream_number)
+            d += "   Mass Flowrate (kg/hr):     {}\n".format(self.mass_flow)
+            d += "   Molar Flowrate (kmol/hr):      {}\n".format(self.mol_flow)
+            d += "   CO Mole Fraction    {}\n".format(self.co_frac)
+            d += "   ACO Mole Fraction:    {}\n".format(self.aco_frac)
+            d += "   DCO Mole Fraction:          {}\n".format(self.dco_frac)
+            d += "   AA Mole Fraction:         {}\n".format(self.aa_frac)
+            d += "   Water Mole Fraction: {}".format(self.water_frac)
+            d += "   Gum Mole Fraction:  {}".format(self.gum_frac)
+            return d
