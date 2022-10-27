@@ -8,7 +8,7 @@ class chemical:
         
         self.moles = 0
         self.name = name
-        if hydrogen_atoms >= 0 & carbon_atoms >= 0 & oxygen_atoms >= 0:
+        if hydrogen_atoms >= 0 and carbon_atoms >= 0 and oxygen_atoms >= 0:
             self.valid = True
             self.carbon_atoms = carbon_atoms
             self.hydrogen_atoms = hydrogen_atoms

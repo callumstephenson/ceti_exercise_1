@@ -13,6 +13,7 @@ class stream:
 
         if round(co_frac + aco_frac + dco_frac + aa_frac + water_frac + gum_frac, 1) == 1:
 
+            # define fractions
             self.valid = True
             self.co_frac = co_frac
             self.aco_frac = aco_frac
@@ -20,6 +21,14 @@ class stream:
             self.aa_frac = aa_frac
             self.water_frac = water_frac
             self.gum_frac = gum_frac
+
+            # auto-define molar flow rate
+            self.co_molflow = self.co_frac * self.mol_flow
+            self.aco_molflow = self.aco_frac * self.mol_flow
+            self.dco_molflow = self.dco_frac * self.mol_flow
+            self.aa_molflow = self.aa_frac * self.mol_flow
+            self.water_molflow = self.water_frac * self.mol_flow 
+            self.gum_molflow =  self.gum_frac * self.mol_flow
 
         else:
             
@@ -40,3 +49,25 @@ class stream:
             d += "   Water Mole Fraction: {}".format(self.water_frac)
             d += "   Gum Mole Fraction:  {}".format(self.gum_frac)
             return d
+
+    def update(self, new_massflow, new_molflow, co_delta = 0, aco_delta = 0, dco_delta = 0, aa_delta = 0, water_delta = 0, gum_delta = 0):
+        if new_molflow >= 0:
+            # update molflows
+            self.mol_flow = new_molflow
+            self.co_molflow += co_delta
+            self.aco_molflow += aco_delta
+            self.dco_molflow += dco_delta
+            self.aa_molflow += aa_delta
+            self.water_molflow += water_delta
+            self.gum_molflow += gum_delta
+            # update fractions
+            self.co_frac = self.co_molflow / self.mol_flow
+            self.aco_frac = self.aco_molflow / self.mol_flow
+            self.dco_frac = self.dco_molflow/ self.mol_flow
+            self.aa_frac = self.aa_molflow / self.mol_flow
+            self.water_frac = self.water_molflow / self.mol_flow
+            self.gum_frac = self.gum_molflow/ self.mol_flow
+            self.mass_flow = new_massflow
+        else:
+            raise Exception("New molar flowrate defined as negative.")
+        return None
