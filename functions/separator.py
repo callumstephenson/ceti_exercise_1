@@ -56,6 +56,21 @@ def column2(in_stream, out_stream_top, out_stream_bottom, aa, water):
     out_stream_bottom.update(new_massflow = bottom_massflow, new_molflow = bottom_molflow, co_delta = co_delta_column2, dco_delta = dco_delta_column2, aco_delta = aco_delta_column2)
     return None
 
-def acid_separator(in_stream, recycle, purge):
+def acid_separator(in_stream, recycle, purge, aa, water):
+    'input args(in_stream, recycle stream, purge stream, chemicals:aa, water'
     # 99mol% AA on recycle, 8mol% AA on purge
-    in_stream.mol_flow = recycle.mol_flow + purge.mol_flow
+    purge_mol_flow = (in_stream.mol_flow *(0.99 - in_stream.aa_frac)) / 0.91
+    recycle_mol_flow = in_stream.mol_flow - purge_mol_flow
+
+    # purge deltas
+    purge_water_delta = 0.92 * purge.mol_flow
+    purge_aa_delta = 0.08 * purge.mol_flow
+    purge_massflow = purge_water_delta*water.mr_kg + purge_aa_delta*aa.mr_kg
+    purge.update(new_massflow = purge_massflow, new_molflow = purge_mol_flow, aa_delta = purge_aa_delta, water_delta = purge_water_delta)
+
+    # recycle deltas
+    recycle_water_delta = 0.01 * recycle_mol_flow
+    recycle_aa_delta = 0.99 * recycle_mol_flow
+    recycle_massflow = in_stream.massflow - purge_massflow
+    recycle.update(new_massflow = recycle_massflow, new_molflow = recycle_mol_flow, aa_delta = recycle_aa_delta, water_delta = recycle_water_delta)
+    return None

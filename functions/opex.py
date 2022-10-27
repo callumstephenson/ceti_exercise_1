@@ -10,14 +10,14 @@ def reactor_cost(in_stream_flowrate, temperature):
         raise Exception("invalid input args")
     return ( in_stream_flowrate * (temperature - 20) ) / 10000
 
-def column_1_cost(in_stream_flowrate, column_number = 0):
+def column_cost(in_stream_flowrate, column_number = 0):
     '''
     column operating cost per hour in USD
     input arguments: in_stream_flowrate (kg / hr)
     return: column operating cost in USD per hour
     '''
     column_factor = [25, 100]
-    if in_stream_flowrate < 0 or column_number == 0:
+    if in_stream_flowrate < 0:
         raise Exception("invalid input args")
     return in_stream_flowrate / column_factor[column_number]
 
