@@ -33,8 +33,8 @@ gum = chemical("Gum", 38, 68, 4)
 # stream definitions
 # stream(number, mass_flow, mol_flow, co_frac, aco_frac, dco_frac, aa_frac, water_frac, gum_frac) 
 x = int(1600) # initial flowrate...
-stream_1 = stream(1, 10070, 1, 0, 0, 0, 0, 0)
-stream_2 = stream(2, 15105, 0, 0, 0, 1, 0, 0)
+stream_1 = stream(1, 5035, 1, 0, 0, 0, 0, 0)
+stream_2 = stream(2, 7553, 0, 0, 0, 1, 0, 0)
 stream_12 = stream(12, 0, 0, 0, 0, 0, 0, 0)
 stream_8 = stream(8, 0, 0, 0, 0, 0, 0, 0)
 
@@ -98,7 +98,7 @@ material_hour = product - feed_cost
 material_year = material_hour * hours_pa
 
 # total operating profit
-print(feed_cost)
-print(product)
 yearly_profit = material_year - total_yearly_operating
 print("Total yearly profit is $", yearly_profit)
+dco_pa_ton = int(stream_10.dco_molflow * dco.mr_kg * 8)
+print(dco_pa_ton)
