@@ -3,15 +3,14 @@
 class stream:
     'A class for the stream object, containing mass flowrate, molar flowrate, and molar fractions of each chemical'
 
-    def __init__(self, stream_number, mass_flow, mol_flow, co_frac, aco_frac, dco_frac, aa_frac, water_frac, gum_frac):
+    def __init__(self, stream_number, mol_flow, co_frac, aco_frac, dco_frac, aa_frac, water_frac, gum_frac, initialised=True):
         'stream class initialisation with each of the corresponding input arguments being set to self.'
 
         self.stream_number = stream_number
-        self.mass_flow = mass_flow
         self.mol_flow = mol_flow
+        self.initialised = initialised
 
-
-        if round(co_frac + aco_frac + dco_frac + aa_frac + water_frac + gum_frac, 1) == 1:
+        if round(co_frac + aco_frac + dco_frac + aa_frac + water_frac + gum_frac, 1) == 1 or initialised:
 
             # define fractions
             self.valid = True
@@ -40,7 +39,6 @@ class stream:
         'Self print statement for the stream object'
         if self.valid:
             d = "Stream Number:     {}\n".format(self.stream_number)
-            d += "   Mass Flowrate (kg/hr):     {}\n".format(self.mass_flow)
             d += "   Molar Flowrate (kmol/hr):      {}\n".format(self.mol_flow)
             d += "   CO Mole Fraction    {}\n".format(self.co_frac)
             d += "   ACO Mole Fraction:    {}\n".format(self.aco_frac)
@@ -50,7 +48,7 @@ class stream:
             d += "   Gum Mole Fraction:  {}".format(self.gum_frac)
             return d
 
-    def update(self, new_massflow, new_molflow, co_delta = 0, aco_delta = 0, dco_delta = 0, aa_delta = 0, water_delta = 0, gum_delta = 0):
+    def update(self, new_molflow, co_delta = 0, aco_delta = 0, dco_delta = 0, aa_delta = 0, water_delta = 0, gum_delta = 0):
         if new_molflow >= 0:
             # update molflows
             self.mol_flow = new_molflow
@@ -61,13 +59,18 @@ class stream:
             self.water_molflow += water_delta
             self.gum_molflow += gum_delta
             # update fractions
-            self.co_frac = self.co_molflow / self.mol_flow
-            self.aco_frac = self.aco_molflow / self.mol_flow
-            self.dco_frac = self.dco_molflow/ self.mol_flow
-            self.aa_frac = self.aa_molflow / self.mol_flow
-            self.water_frac = self.water_molflow / self.mol_flow
-            self.gum_frac = self.gum_molflow/ self.mol_flow
-            self.mass_flow = new_massflow
+            if not self.co_molflow == 0:
+                self.co_frac = self.co_molflow / self.mol_flow
+            if not self.aco_molflow == 0:
+                self.aco_frac = self.aco_molflow / self.mol_flow
+            if not self.dco_molflow == 0:
+                self.dco_frac = self.dco_molflow/ self.mol_flow
+            if not self.aa_molflow == 0:
+                self.aa_frac = self.aa_molflow / self.mol_flow
+            if not self.water_molflow == 0:
+                self.water_frac = self.water_molflow / self.mol_flow
+            if not self.gum_molflow == 0:
+                self.gum_frac = self.gum_molflow / self.mol_flow
         else:
             raise Exception("New molar flowrate defined as negative.")
         return None
