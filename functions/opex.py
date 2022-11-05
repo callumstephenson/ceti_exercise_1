@@ -63,7 +63,7 @@ def recycle_cost(in_stream_flowrate):
     return in_stream_flowrate / 10000
 
 def yearly_finance(stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13):
-    'returns a tuple of form [profit, operating, material, dca tonnage]'
+    'returns profit, operating, material, dca tonnage'
     #calculate mass flow rates and opex
     # aa, co, aco, dco, water
     stream3_massflow = (stream_3.aa_molflow * aa.mr_kg) + (stream_3.co_molflow * co.mr_kg ) + (stream_3.aco_molflow * aco.mr_kg) + (stream_3.dco_molflow * dco.mr_kg) + (stream_3.water_molflow * water.mr_kg)
@@ -90,4 +90,4 @@ def yearly_finance(stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, s
     # total operating profit
     yearly_profit = material_year - total_yearly_operating
     dco_pa_ton = int(stream_10.dco_molflow * dco.mr_kg * 8)
-    return (yearly_profit, total_yearly_operating, material_year, dco_pa_ton)
+    return yearly_profit, total_yearly_operating, material_year, dco_pa_ton

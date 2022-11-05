@@ -6,7 +6,7 @@ from functions.separator import *
 
 
 def plant(co_molflow_in, n, large_reactor, T):
-    'returns a tuple of streams at steady state, 1->13'
+    'returns streams at steady state'
     # chemical("name", carbon n, hydrogen n, oxygen n, moles)
     water = chemical("Water", 0, 2, 1)
     co = chemical("Caster Oil", 19, 36, 3)
@@ -55,4 +55,4 @@ def plant(co_molflow_in, n, large_reactor, T):
         # acid separator
         acid_separator(stream_11, stream_12, stream_13, aa, water)
         i += 1
-    return (stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13)
+    return stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13
