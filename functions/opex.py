@@ -66,28 +66,23 @@ def yearly_finance(stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, s
     'returns profit, operating, material, dca tonnage'
     #calculate mass flow rates and opex
     # aa, co, aco, dco, water
-    stream3_massflow = (stream_3.aa_molflow * aa.mr_kg) + (stream_3.co_molflow * co.mr_kg ) + (stream_3.aco_molflow * aco.mr_kg) + (stream_3.dco_molflow * dco.mr_kg) + (stream_3.water_molflow * water.mr_kg)
-    stream7_massflow = (stream_7.aa_molflow * aa.mr_kg) + (stream_7.co_molflow * co.mr_kg ) + (stream_7.aco_molflow * aco.mr_kg) + (stream_7.dco_molflow * dco.mr_kg) + (stream_7.water_molflow * water.mr_kg)
-    stream9_massflow = (stream_9.aa_molflow * aa.mr_kg) + (stream_9.co_molflow * co.mr_kg ) + (stream_9.aco_molflow * aco.mr_kg) + (stream_9.dco_molflow * dco.mr_kg) + (stream_9.water_molflow * water.mr_kg)
-    stream11_massflow = (stream_11.aa_molflow * aa.mr_kg) + (stream_11.co_molflow * co.mr_kg ) + (stream_11.aco_molflow * aco.mr_kg) + (stream_11.dco_molflow * dco.mr_kg) + (stream_11.water_molflow * water.mr_kg)
-    stream6_massflow = (stream_6.aa_molflow * aa.mr_kg) + (stream_6.co_molflow * co.mr_kg ) + (stream_6.aco_molflow * aco.mr_kg) + (stream_6.dco_molflow * dco.mr_kg) + (stream_6.water_molflow * water.mr_kg)
-    stream8_massflow = (stream_8.aa_molflow * aa.mr_kg) + (stream_8.co_molflow * co.mr_kg ) + (stream_8.aco_molflow * aco.mr_kg) + (stream_8.dco_molflow * dco.mr_kg) + (stream_8.water_molflow * water.mr_kg)
-    stream12_massflow = (stream_12.aa_molflow * aa.mr_kg) + (stream_12.co_molflow * co.mr_kg ) + (stream_12.aco_molflow * aco.mr_kg) + (stream_12.dco_molflow * dco.mr_kg) + (stream_12.water_molflow * water.mr_kg)
-    reactors_per_hour = reactor_cost(stream3_massflow, temperature)
-    columns_per_hour = column_cost(stream7_massflow, 0) + column_cost(stream9_massflow, 1)
-    acid_sep_per_hour = acid_sep_cost(stream11_massflow)
-    filter_per_hour = filter_cost(stream6_massflow)
-    recyclers_per_hour = recycle_cost(stream8_massflow) + recycle_cost(stream12_massflow)
+    stream_1.massflow(), stream_2.massflow(), stream_3.massflow(), stream_4.massflow(), stream_5.massflow(), stream_6.massflow(), stream_7.massflow(), stream_8.massflow(), stream_9.massflow(), stream_10.massflow(), stream_11.massflow(), stream_12.massflow(), stream_13.massflow()
+    reactors_per_hour = reactor_cost(stream_3.mass_flow, temperature)
+    columns_per_hour = column_cost(stream_7.mass_flow, 0) + column_cost(stream_9.mass_flow, 1)
+    acid_sep_per_hour = acid_sep_cost(stream_11.mass_flow)
+    filter_per_hour = filter_cost(stream_6.mass_flow)
+    recyclers_per_hour = recycle_cost(stream_8.mass_flow) + recycle_cost(stream_12.mass_flow)
     total_hourly_operating = reactors_per_hour + columns_per_hour + acid_sep_per_hour + filter_per_hour + recyclers_per_hour + labour
     total_yearly_operating = hours_pa * total_hourly_operating
 
     # total material cost/profit
-    feed_cost = (aa_cost * stream_2.mol_flow * aa.mr_kg) + (co_cost * stream_1.mol_flow * co.mr_kg)
-    product = stream_10.dco_molflow * dco.mr_kg * dco_cost
+    feed_cost = (aa_cost * stream_2.mass_flow) + (co_cost * stream_1.mass_flow)
+    product = stream_10.dco_massflow * dco_cost
     material_hour = product - feed_cost
     material_year = material_hour * hours_pa
 
     # total operating profit
     yearly_profit = material_year - total_yearly_operating
-    dco_pa_ton = int(stream_10.dco_molflow * dco.mr_kg * 8)
+    dco_pa_ton = int(stream_10.dco_massflow * 8)
     return int(yearly_profit), int(total_yearly_operating), int(material_year), int(dco_pa_ton)
+

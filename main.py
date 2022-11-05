@@ -1,6 +1,7 @@
 from functions.opex import *
 from functions.plant import *
 
+
 def run():
     'returns master list of all running conditions / profit, and prints the most optimum'
     master_list = []
@@ -8,7 +9,7 @@ def run():
         true_index = [True, False]
         for j in range(0, 2):
             stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13, temperature = plant(1000, true_index[j], i)
-            # [(profit, operating, materials, dca_tonnage), large_reactor, t]
+            # arr of [(profit, operating, materials, dca_tonnage), large_reactor, t]
             master_list.append((yearly_finance(stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13, temperature), true_index[j], i, int(stream_1.mol_flow), int(stream_2.mol_flow)))
     profit = []
     dca_tonnage = []
@@ -24,7 +25,7 @@ def run():
         "AA Molflow =", master_list[best_cond_index][4], "mol / hour \n",
         "DCA tonnage =", master_list[best_cond_index][0][3], "ton / year \n",
         )
-    print(plant(1000, master_list[best_cond_index][1], master_list[best_cond_index][2]))
+    # print(plant(100000, master_list[best_cond_index][1], master_list[best_cond_index][2]))
     return None
 
 if __name__ == "__main__":

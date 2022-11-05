@@ -1,7 +1,15 @@
+from classes.chemical import *
 # This module provides the stream class for the calculations
 
+# chemical("name", carbon n, hydrogen n, oxygen n, moles)
+water = chemical("Water", 0, 2, 1)
+co = chemical("Caster Oil", 19, 36, 3)
+aco = chemical("Acetylated Castor Oil", 21, 38, 4)
+dco = chemical("Dehydrated Castor Oil", 19, 34, 2)
+aa = chemical("Acetic Acid", 4, 4, 2)
+gum = chemical("Gum", 38, 68, 4)
 class stream:
-    'A class for the stream object, containing mass flowrate, molar flowrate, and molar fractions of each chemical'
+    'A class for the stream object, containing, molar flowrate, and molar fractions of each chemical'
 
     def __init__(self, stream_number, mol_flow, co_frac, aco_frac, dco_frac, aa_frac, water_frac, gum_frac, initialised=True):
         'stream class initialisation with each of the corresponding input arguments being set to self.'
@@ -73,4 +81,14 @@ class stream:
                 self.gum_frac = self.gum_molflow / self.mol_flow
         else:
             raise Exception("New molar flowrate defined as negative.")
+        return None
+    
+    def massflow(self):
+        self.co_massflow = self.co_molflow * co.mr_kg
+        self.aco_massflow = self.aco_molflow * aco.mr_kg
+        self.dco_massflow = self.dco_molflow * dco.mr_kg
+        self.aa_massflow = self.aa_molflow * aa.mr_kg
+        self.water_massflow = self.water_molflow * water.mr_kg
+        self.gum_massflow = self.gum_molflow * gum.mr_kg
+        self.mass_flow = self.co_massflow + self.aco_massflow + self.dco_massflow + self.aa_massflow + self.water_massflow + self.gum_massflow
         return None

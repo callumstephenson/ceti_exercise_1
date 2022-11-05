@@ -24,7 +24,7 @@ def plant(n, large_reactor, T):
     temperature = T
 
     while i <= n:
-        stream_1 = stream(1, 5930 - stream_8.co_molflow, 1, 0, 0, 0, 0, 0)
+        stream_1 = stream(1, 5920 - stream_8.co_molflow, 1, 0, 0, 0, 0, 0)
         stream2_req = ((stream_8.co_molflow+stream_1.mol_flow)*1.5) - stream_12.aa_molflow
         stream_2 = stream(2, stream2_req, 0, 0, 0, 1, 0, 0)
         stream_3 = stream(3, 0, 0, 0, 0, 0, 0, 0)
