@@ -5,7 +5,7 @@ from functions.reactor import *
 from functions.separator import *
 
 
-def plant(co_molflow_in, n, large_reactor, T):
+def plant(n, large_reactor, T):
     'returns streams at steady state'
     # chemical("name", carbon n, hydrogen n, oxygen n, moles)
     water = chemical("Water", 0, 2, 1)
@@ -16,17 +16,14 @@ def plant(co_molflow_in, n, large_reactor, T):
     gum = chemical("Gum", 38, 68, 4)
 
     # stream(number, mass_flow, mol_flow, co_frac, aco_frac, dco_frac, aa_frac, water_frac, gum_frac) 
-    x = int(1600) # initial flowrate...
-    stream_1 = stream(1, co_molflow_in, 1, 0, 0, 0, 0, 0)
-    stream_2 = stream(2, 1.5 * co_molflow_in, 0, 0, 0, 1, 0, 0)
     stream_12 = stream(12, 0, 0, 0, 0, 0, 0, 0)
     stream_8 = stream(8, 0, 0, 0, 0, 0, 0, 0)
 
     # plant
-    n = 1000
     i = 0
 
     while i <= n:
+        stream_1 = stream(1, 5960 - stream_8.co_molflow, 1, 0, 0, 0, 0, 0)
         stream2_req = ((stream_8.co_molflow+stream_1.mol_flow)*1.5) - stream_12.aa_molflow
         stream_2 = stream(2, stream2_req, 0, 0, 0, 1, 0, 0)
         stream_3 = stream(3, 0, 0, 0, 0, 0, 0, 0)
