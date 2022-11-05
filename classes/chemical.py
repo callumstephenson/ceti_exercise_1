@@ -6,7 +6,6 @@ class chemical:
     def __init__(self, name, carbon_atoms, hydrogen_atoms, oxygen_atoms):
         'class initialisation of name, carbon atom amount, hydrogen atom amount, oxygen atom amount (per molecule)'
         
-        self.moles = 0
         self.name = name
         if hydrogen_atoms >= 0 and carbon_atoms >= 0 and oxygen_atoms >= 0:
             self.valid = True

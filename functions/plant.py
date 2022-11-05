@@ -21,9 +21,10 @@ def plant(n, large_reactor, T):
 
     # plant
     i = 0
+    temperature = T
 
     while i <= n:
-        stream_1 = stream(1, 5960 - stream_8.co_molflow, 1, 0, 0, 0, 0, 0)
+        stream_1 = stream(1, 5930 - stream_8.co_molflow, 1, 0, 0, 0, 0, 0)
         stream2_req = ((stream_8.co_molflow+stream_1.mol_flow)*1.5) - stream_12.aa_molflow
         stream_2 = stream(2, stream2_req, 0, 0, 0, 1, 0, 0)
         stream_3 = stream(3, 0, 0, 0, 0, 0, 0, 0)
@@ -42,7 +43,7 @@ def plant(n, large_reactor, T):
         # reactor 1
         stream_4 = reactor1(stream_3)
         # reactor 2
-        stream_5 = reactor2(stream_4, T, large_reactor)
+        stream_5 = reactor2(stream_4, temperature, large_reactor)
         # filter
         stream_7 = filter(stream_5, stream_6, gum)
         # column 1
@@ -52,4 +53,4 @@ def plant(n, large_reactor, T):
         # acid separator
         acid_separator(stream_11, stream_12, stream_13, aa, water)
         i += 1
-    return stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13
+    return stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13, temperature

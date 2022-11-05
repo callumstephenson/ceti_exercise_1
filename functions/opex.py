@@ -62,7 +62,7 @@ def recycle_cost(in_stream_flowrate):
     outputs: cost per hour in USD '''
     return in_stream_flowrate / 10000
 
-def yearly_finance(stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13):
+def yearly_finance(stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13, temperature):
     'returns profit, operating, material, dca tonnage'
     #calculate mass flow rates and opex
     # aa, co, aco, dco, water
@@ -73,7 +73,7 @@ def yearly_finance(stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, s
     stream6_massflow = (stream_6.aa_molflow * aa.mr_kg) + (stream_6.co_molflow * co.mr_kg ) + (stream_6.aco_molflow * aco.mr_kg) + (stream_6.dco_molflow * dco.mr_kg) + (stream_6.water_molflow * water.mr_kg)
     stream8_massflow = (stream_8.aa_molflow * aa.mr_kg) + (stream_8.co_molflow * co.mr_kg ) + (stream_8.aco_molflow * aco.mr_kg) + (stream_8.dco_molflow * dco.mr_kg) + (stream_8.water_molflow * water.mr_kg)
     stream12_massflow = (stream_12.aa_molflow * aa.mr_kg) + (stream_12.co_molflow * co.mr_kg ) + (stream_12.aco_molflow * aco.mr_kg) + (stream_12.dco_molflow * dco.mr_kg) + (stream_12.water_molflow * water.mr_kg)
-    reactors_per_hour = reactor_cost(stream3_massflow, 300)
+    reactors_per_hour = reactor_cost(stream3_massflow, temperature)
     columns_per_hour = column_cost(stream7_massflow, 0) + column_cost(stream9_massflow, 1)
     acid_sep_per_hour = acid_sep_cost(stream11_massflow)
     filter_per_hour = filter_cost(stream6_massflow)
@@ -90,4 +90,4 @@ def yearly_finance(stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, s
     # total operating profit
     yearly_profit = material_year - total_yearly_operating
     dco_pa_ton = int(stream_10.dco_molflow * dco.mr_kg * 8)
-    return yearly_profit, total_yearly_operating, material_year, dco_pa_ton
+    return int(yearly_profit), int(total_yearly_operating), int(material_year), int(dco_pa_ton)
