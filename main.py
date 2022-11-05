@@ -2,7 +2,7 @@ from functions.opex import *
 from functions.plant import *
 
 def run():
-    'returns a list of tuples of form [profit, operating, material, dca tonnage'
+    'returns master list of all running conditions / profit, and prints the most optimum'
     master_list = []
     for i in range(250, 340, 10):
         true_index = [True, False]
@@ -19,13 +19,13 @@ def run():
     print("Best conditions for operation are: \n", 
         "Profit =", master_list[best_cond_index][0][0], "USD$ / year \n",
         "Large reactor =", master_list[best_cond_index][1], "\n",
-        "Temperature =", master_list[best_cond_index][2], "deg C\n",
+        "Temperature =", master_list[best_cond_index][2], " *C\n",
         "CO Molflow =", master_list[best_cond_index][3], "mol / hour \n",
         "AA Molflow =", master_list[best_cond_index][4], "mol / hour \n",
         "DCA tonnage =", master_list[best_cond_index][0][3], "ton / year \n",
         )
     print(master_list)
-    return None
+    return master_list
 if __name__ == "__main__":
     print("CASTOR OIL PLANT SIM")
     run()

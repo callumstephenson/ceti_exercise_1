@@ -9,7 +9,7 @@ def plant(n, large_reactor, T):
     'returns streams at steady state'
     # chemical("name", carbon n, hydrogen n, oxygen n, moles)
     water = chemical("Water", 0, 2, 1)
-    co = chemical("Caster Oil", 19, 36, 3)
+    co = chemical("Castor Oil", 19, 36, 3)
     aco = chemical("Acetylated Castor Oil", 21, 38, 4)
     dco = chemical("Dehydrated Castor Oil", 19, 34, 2)
     aa = chemical("Acetic Acid", 4, 4, 2)

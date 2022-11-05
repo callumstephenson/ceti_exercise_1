@@ -52,7 +52,7 @@ def reactor2(in_stream, temperature, large_reactor):
     dco_made = -1 * aco_delta_r2 # dco made = aco used
     aa_delta_r2 = dco_made # 1 mol aa made per dco made, not used in side reaction
     dco_delta_r2 = (selectivity * dco_made) / (selectivity + 2) # simultaneous eqs
-    gum_delta_r2 = (2 * dco_made) / (selectivity + 2) # per definition
+    gum_delta_r2 = dco_made / (selectivity + 2) # per definition
     mol_flow_r2 = in_stream.mol_flow + aco_delta_r2 + aa_delta_r2 + dco_delta_r2 + gum_delta_r2
     in_stream.update(new_molflow = mol_flow_r2 , aco_delta = aco_delta_r2, aa_delta = aa_delta_r2, dco_delta = dco_delta_r2, gum_delta = gum_delta_r2)
     return in_stream
