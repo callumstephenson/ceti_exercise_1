@@ -20,9 +20,9 @@ Below you can find the PFD used to create this exercise, along with some of the 
 
 ![pfd](https://i.imgur.com/7Df4cK2.png)
 
-![reactor data](https://imgur.com/Quco6lv)
+![reactor data](https://i.imgur.com/Quco6lv.png)
 
-![separator/financial data](https://imgur.com/tSjVdls)
+![separator/financial data](https://i.imgur.com/tSjVdls.png)
 
 These images are courtesy of:
 
