@@ -26,6 +26,7 @@ def run():
         )
     print(master_list)
     return master_list
+
 if __name__ == "__main__":
     print("CASTOR OIL PLANT SIM")
     run()
