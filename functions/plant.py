@@ -12,7 +12,7 @@ def plant(n, large_reactor, T):
     co = chemical("Castor Oil", 19, 36, 3)
     aco = chemical("Acetylated Castor Oil", 21, 38, 4)
     dco = chemical("Dehydrated Castor Oil", 19, 34, 2)
-    aa = chemical("Acetic Acid", 4, 4, 2)
+    aa = chemical("Acetic Acid", 2, 4, 2)
     gum = chemical("Gum", 38, 68, 4)
 
     # stream(number, mass_flow, mol_flow, co_frac, aco_frac, dco_frac, aa_frac, water_frac, gum_frac) 

@@ -1,12 +1,12 @@
 from classes.chemical import *
 # This module provides the stream class for the calculations
 
-# chemical("name", carbon n, hydrogen n, oxygen n, moles)
+# chemical("name", carbon n, hydrogen n, oxygen)
 water = chemical("Water", 0, 2, 1)
-co = chemical("Caster Oil", 19, 36, 3)
+co = chemical("Castor Oil", 19, 36, 3)
 aco = chemical("Acetylated Castor Oil", 21, 38, 4)
 dco = chemical("Dehydrated Castor Oil", 19, 34, 2)
-aa = chemical("Acetic Acid", 4, 4, 2)
+aa = chemical("Acetic Acid", 2, 4, 2)
 gum = chemical("Gum", 38, 68, 4)
 class stream:
     'A class for the stream object, containing, molar flowrate, and molar fractions of each chemical'
@@ -47,13 +47,20 @@ class stream:
         'Self print statement for the stream object'
         if self.valid:
             d = "Stream Number:     {}\n".format(self.stream_number)
-            d += "   Molar Flowrate (kmol/hr):      {}\n".format(self.mol_flow)
-            d += "   CO Mole Fraction    {}\n".format(self.co_frac)
+            d += "   Molar Flowrate (mol/hr):      {}\n".format(self.mol_flow)
+            d += "   CO Mole Fraction:    {}\n".format(self.co_frac)
             d += "   ACO Mole Fraction:    {}\n".format(self.aco_frac)
             d += "   DCO Mole Fraction:          {}\n".format(self.dco_frac)
             d += "   AA Mole Fraction:         {}\n".format(self.aa_frac)
             d += "   Water Mole Fraction: {}\n".format(self.water_frac)
-            d += "   Gum Mole Fraction:  {}".format(self.gum_frac)
+            d += "   Gum Mole Fraction:   {}\n".format(self.gum_frac)
+            d += "   CO Mass Flowrate:    {}\n".format(self.co_massflow)
+            d += "   ACO Mass Flowrate:    {}\n".format(self.aco_massflow)
+            d += "   DCO Mass Flowrate:          {}\n".format(self.dco_massflow)
+            d += "   AA Mass Flowrate:         {}\n".format(self.aa_massflow)
+            d += "   Water Mass Flowrate: {}\n".format(self.water_massflow)
+            d += "   Gum Mass Flowrate:  {}\n".format(self.gum_massflow)
+            d += "   Total Mass Flowrate:   {}\n".format(self.mass_flow)
             return d
 
     def update(self, new_molflow, co_delta = 0, aco_delta = 0, dco_delta = 0, aa_delta = 0, water_delta = 0, gum_delta = 0):
