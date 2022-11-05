@@ -44,7 +44,7 @@ class stream:
             d += "   ACO Mole Fraction:    {}\n".format(self.aco_frac)
             d += "   DCO Mole Fraction:          {}\n".format(self.dco_frac)
             d += "   AA Mole Fraction:         {}\n".format(self.aa_frac)
-            d += "   Water Mole Fraction: {}".format(self.water_frac)
+            d += "   Water Mole Fraction: {}\n".format(self.water_frac)
             d += "   Gum Mole Fraction:  {}".format(self.gum_frac)
             return d
 
