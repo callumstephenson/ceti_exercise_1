@@ -27,6 +27,7 @@ def run():
         )
     stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13, temperature = plant(1000, master_list[best_cond_index][1], master_list[best_cond_index][2])
     stream_1.massflow(), stream_2.massflow(), stream_3.massflow(), stream_4.massflow(), stream_5.massflow(), stream_6.massflow(), stream_7.massflow(), stream_8.massflow(), stream_9.massflow(), stream_10.massflow(), stream_11.massflow(), stream_12.massflow(), stream_13.massflow()
+    print(stream_13)
     return None
 
 if __name__ == "__main__":
