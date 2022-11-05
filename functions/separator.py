@@ -1,5 +1,8 @@
-def filter(in_stream, out_stream_gum, gum):
+import copy
+
+def filter(input_stream, out_stream_gum):
     'gum filter function, inputs (in_stream, gum stream, rest out)'
+    in_stream = copy.deepcopy(input_stream)
     # simple mass balance for gum
     gum_delta_filter = in_stream.gum_molflow
 
@@ -12,7 +15,7 @@ def filter(in_stream, out_stream_gum, gum):
     return in_stream
 
 
-def column1(in_stream, out_stream_top, out_stream_bottom, aa, co, dco, aco, water):
+def column1(in_stream, out_stream_top, out_stream_bottom):
     'args(instream, topstream, bottomstream, chemicals: aa, co, dco, aco, water'
     # separation 'efficiencies'
     test = in_stream.mol_flow
@@ -35,7 +38,7 @@ def column1(in_stream, out_stream_top, out_stream_bottom, aa, co, dco, aco, wate
     return None
 
 
-def column2(in_stream, out_stream_top, out_stream_bottom, aa, water):
+def column2(in_stream, out_stream_top, out_stream_bottom):
     'args(instream, topstream, bottomstream, chemicals:aa, water'
     # separation top
     water_delta_column2 = in_stream.water_molflow
@@ -51,7 +54,7 @@ def column2(in_stream, out_stream_top, out_stream_bottom, aa, water):
     out_stream_bottom.update(new_molflow = bottom_molflow, co_delta = co_delta_column2, dco_delta = dco_delta_column2, aco_delta = aco_delta_column2)
     return None
 
-def acid_separator(in_stream, recycle, purge, aa, water):
+def acid_separator(in_stream, recycle, purge):
     'input args(in_stream, recycle stream, purge stream, chemicals:aa, water'
     # 99mol% AA on recycle, 8mol% AA on purge
     purge_mol_flow = (in_stream.mol_flow *(0.99 - in_stream.aa_frac)) / 0.91

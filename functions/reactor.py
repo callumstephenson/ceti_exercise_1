@@ -1,8 +1,10 @@
+import copy
 # reactors
 
 
-def reactor1(in_stream):
+def reactor1(input_stream):
     'returns the out_stream composition and flowrate given a well defined in_stream'
+    in_stream = copy.deepcopy(input_stream)
     conversion = 0.9
     if in_stream.aa_molflow >= 1.5 * in_stream.co_molflow:
         aco_delta_r1 = in_stream.co_molflow * conversion
@@ -16,8 +18,9 @@ def reactor1(in_stream):
         raise Exception("AA not in 0.5 excess")
     return in_stream
 
-def reactor2(in_stream, temperature, large_reactor):
+def reactor2(input_stream, temperature, large_reactor):
     'returns out_stream composition and flowrate given a temperature and reactor size'
+    in_stream = copy.deepcopy(input_stream)
     temp_condition_dict_small = {
          250 : [0.107, 1.43*10**8],
          260 : [0.161, 9.51*10**6],

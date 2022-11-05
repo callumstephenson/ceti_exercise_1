@@ -24,8 +24,8 @@ def run():
         "AA Molflow =", master_list[best_cond_index][4], "mol / hour \n",
         "DCA tonnage =", master_list[best_cond_index][0][3], "ton / year \n",
         )
-    print(master_list)
-    return master_list
+    print(plant(1000, master_list[best_cond_index][1], master_list[best_cond_index][2]))
+    return None
 
 if __name__ == "__main__":
     print("CASTOR OIL PLANT SIM")

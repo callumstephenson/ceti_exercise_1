@@ -45,12 +45,12 @@ def plant(n, large_reactor, T):
         # reactor 2
         stream_5 = reactor2(stream_4, temperature, large_reactor)
         # filter
-        stream_7 = filter(stream_5, stream_6, gum)
+        stream_7 = filter(stream_5, stream_6)
         # column 1
-        column1(stream_7, stream_9, stream_8, aa, co, dco, aco, water)
+        column1(stream_7, stream_9, stream_8)
         # column 2 
-        column2(stream_9, stream_11, stream_10, aa, water)
+        column2(stream_9, stream_11, stream_10)
         # acid separator
-        acid_separator(stream_11, stream_12, stream_13, aa, water)
+        acid_separator(stream_11, stream_12, stream_13)
         i += 1
     return stream_1, stream_2, stream_3, stream_4, stream_5, stream_6, stream_7, stream_8, stream_9, stream_10, stream_11, stream_12, stream_13, temperature
